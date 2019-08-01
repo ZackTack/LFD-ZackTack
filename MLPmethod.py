@@ -42,23 +42,14 @@ ohe = ce.OneHotEncoder(use_cat_names=True)
 X_train_ohe = ohe.fit_transform(X_train)
 X_test_ohe = ohe.transform(X_test)
 
-# Train Random Forest classifier
-clf = RandomForestClassifier(n_estimators=20,criterion='gini',bootstrap=True,random_state=0)
-clf.fit(X_train_ohe, Y_train)
+# Training MLP
+clf = MLPClassifier(solver='lbfgs',activation='logistic',learning_rate='constant',max_iter=600,hidden_layer_sizes=(10,10))
+clf.fit(X_train_ohe,Y_train)
 prediction = clf.predict(X_test_ohe)
 
-# Performance evaluation
+# Evaluate MLP
 print(clf.get_params())
 print('The accuracy on test set is: ',clf.score(X_test_ohe,Y_test))
 print(classification_report(Y_test,prediction))
 skplt.estimators.plot_learning_curve(clf,X_train_ohe,Y_train)
-
-
-# Rank features according to importance
-feature_importances = pd.DataFrame(clf.feature_importances_,
-                                   index = X_train_ohe.columns,
-                                    columns=['importance']).sort_values('importance',ascending=False)
-print(feature_importances)
-
-
 plt.show()
