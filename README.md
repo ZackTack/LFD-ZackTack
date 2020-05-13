@@ -1,2 +1,3 @@
 # Overwatch Data Analysis
-This project joins the kaggle competition "Learning From The Disaster". Using machine learning technique to predict what characteristics those people had who survived in the titanic sinking.
+-Found out elements that effected the match results the most with 83% prediction accuracy on match results in Overwatch video game by constructing and training a random forest classifier using Kaggle dataset along with pandas, scikit-learn in python
+-Learned how to preprocess raw data, construct and tune parameters of the random forest classifier and also other potential classifiers including multilayer perceptron, svm classifiers
